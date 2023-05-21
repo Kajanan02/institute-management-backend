@@ -1,0 +1,31 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+.env
+
+# testing
+/coverage
+expr
+# production
+/build
+
+
+# gist
+/gitslave-2.0.2
+/gitslave-2.0.2.tar.gz
+
+# misc
+.DS_Store
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea/
+ .idea/modules.xml
+  .idea/senzagro.iml
+ .idea/vcs.xml
+debug.log
+.vscode/
+
+src/shared
