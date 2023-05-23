@@ -7,14 +7,14 @@ import User from "../modals/userModal.js";
 //@access Public
 const authUser = asyncHandler(async (req, res) => {
 
-const {email,password} = req.body;
+    const {email, password} = req.body;
     const user = await User.findOne({email})
-    if(user && (await user.matchPassword(password))){
-        generateToken(res,user._id)
+    if (user && (await user.matchPassword(password))) {
+        generateToken(res, user._id)
         res.status(200).json({
-            _id:user._id,
-            name:user.name,
-            email:user.email,
+            _id: user._id,
+            name: user.name,
+            email: user.email,
             // token:generateToken(userExists._id)
         })
     }
@@ -29,25 +29,25 @@ const {email,password} = req.body;
 const registerUser = asyncHandler(async (req, res) => {
     console.log(req.body);
 
-    const {name,email,password} = req.body;
+    const {name, email, password} = req.body;
     const userExists = await User.findOne({email})
-    if(userExists){
+    if (userExists) {
         res.status(400);
         throw new Error('User already exits')
     }
 
-    const user =await User.create({
-        name,email,password
+    const user = await User.create({
+        name, email, password
     });
 
-    if(user){
-        generateToken(res,user._id)
+    if (user) {
+        generateToken(res, user._id)
         res.status(201).json({
-            _id:user._id,
-            name:user.name,
-            email:user.email,
+            _id: user._id,
+            name: user.name,
+            email: user.email,
         })
-    }else {
+    } else {
         res.status(400);
         throw new Error('Invalid user Data')
     }
@@ -60,8 +60,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const logoutUser = asyncHandler(async (req, res) => {
 
-    res.cookie('jwt',null,{
-        httpOnly:true,
+    res.cookie('jwt', null, {
+        httpOnly: true,
         expires: new Date(0),
         // secure: true,
         // sameSite:'strict',
@@ -75,8 +75,31 @@ const logoutUser = asyncHandler(async (req, res) => {
 //@access Private
 
 const getUserProfile = asyncHandler(async (req, res) => {
-    // console.log(User)
-    res.status(200).json({message: 'User Profile'});
+    let _id = req.params.id
+    const user = await User.findById(_id);
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email
+        })
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+const getAllUsers = asyncHandler(async (req, res) => {
+    // console.log(req.params.id)
+    // let data = User.findOne({})
+    // console.log(data)
+    // res.status(200).json(data);
+    try {
+        const users = await User.find({});
+        res.json(users);
+    } catch (err) {
+        console.error('Failed to fetch users from MongoDB:', err);
+        res.status(500).send('Failed to fetch users from MongoDB');
+    }
 });
 
 //@desc Update user profile
@@ -84,8 +107,32 @@ const getUserProfile = asyncHandler(async (req, res) => {
 //@access Private
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-    res.status(200).json({message: 'User Profile updated'});
+    console.log(req.params.id)
+    let _id = req.params.id
+    const user = await User.findById(_id)
+    if (user) {
+        console.log(user)
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+
+        if (req.body.password) {
+            user.password = req.body.password;
+        }
+
+        console.log(req.body)
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+        });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
 });
 
 
-export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile};
+export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getAllUsers};

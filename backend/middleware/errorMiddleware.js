@@ -11,8 +11,8 @@ const errorHandler = (err, req, res, next) => {
     // Set the status code to the error status code
     res.status(statusCode);
     // Return the error message
-    if(err.name ==='CastError' && err.kind === 'ObjectId'){
-        res.status(404).json({ message: 'Product not found' });
+    if (err.name === 'CastError' && err.kind === 'ObjectId') {
+        res.status(404).json({message: 'Product not found'});
     } else {
         res.json({
             message: err.message,
@@ -21,4 +21,4 @@ const errorHandler = (err, req, res, next) => {
     }
 }
 
-export { notFound, errorHandler };
+export {notFound, errorHandler};
