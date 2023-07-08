@@ -12,7 +12,7 @@ const generateToken = (res, userId) => {
         sameSite: 'strict',
         maxAge: 1000 * 60 * 60 * 24 * 30,
     })
-    console.log(token)
+    return token;
 }
 
 export default generateToken;

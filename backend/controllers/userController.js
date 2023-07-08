@@ -10,16 +10,16 @@ const authUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email})
     if (user && (await user.matchPassword(password))) {
-        generateToken(res, user._id)
+       let token = generateToken(res, user._id)
         res.status(200).json({
             _id: user._id,
             name: user.name,
             email: user.email,
-            // token:generateToken(userExists._id)
+            token:token
         })
     }
 
-    res.status(200).json({message: 'Email or password is incorrect'});
+    res.status(401).json({message: 'Email or password is incorrect'});
 });
 
 //@desc Register a new user
@@ -29,7 +29,11 @@ const authUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
     console.log(req.body);
 
-    const {name, email, password} = req.body;
+    const {
+        name, email, password, phoneNumber,
+        address,
+        profilePic,role
+    } = req.body;
     const userExists = await User.findOne({email})
     if (userExists) {
         res.status(400);
@@ -37,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.create({
-        name, email, password
+        name, email, password, phoneNumber, address, profilePic,role
     });
 
     if (user) {
@@ -46,6 +50,10 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role,
+            phoneNumber: user.phoneNumber,
+            address: user.address,
+            profilePic: user.profilePic,
         })
     } else {
         res.status(400);
@@ -81,7 +89,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
         res.json({
             _id: user._id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            role: user.role,
+            address: user.address,
+            profilePic: user.profilePic,
         })
     } else {
         res.status(404);
@@ -114,6 +126,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         console.log(user)
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+        user.address = req.body.address || user.address;
+        user.profilePic = req.body.profilePic || user.profilePic;
 
         if (req.body.password) {
             user.password = req.body.password;
@@ -127,6 +142,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
+            phoneNumber: updatedUser.phoneNumber,
+            address: updatedUser.address,
+            profilePic: updatedUser.profilePic,
         });
     } else {
         res.status(404);

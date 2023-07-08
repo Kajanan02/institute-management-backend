@@ -14,6 +14,22 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        required: true,
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+    },
+    address: {
+        type: String,
+        required: false,
+    },
+    profilePic: {
+        type: String,
+        required: false,
     }
 }, {
     timestamps: true,
