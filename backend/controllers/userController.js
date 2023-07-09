@@ -54,6 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
             phoneNumber: user.phoneNumber,
             address: user.address,
             profilePic: user.profilePic,
+            creationDate: user.creationDate,
         })
     } else {
         res.status(400);
@@ -94,6 +95,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             role: user.role,
             address: user.address,
             profilePic: user.profilePic,
+            creationDate: user.creationDate,
         })
     } else {
         res.status(404);
@@ -145,6 +147,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             phoneNumber: updatedUser.phoneNumber,
             address: updatedUser.address,
             profilePic: updatedUser.profilePic,
+            creationDate: user.creationDate,
         });
     } else {
         res.status(404);
@@ -152,5 +155,19 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
+const deleteUser = asyncHandler(async (req, res) => {
+    let _id = req.params.id
+    const user = await User.findById(_id);
+    console.log(user)
+    if (user) {
+        await user.deleteOne();
+        res.json({message: 'User removed'});
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
 
-export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getAllUsers};
+})
+
+
+export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getAllUsers,deleteUser};

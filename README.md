@@ -21,6 +21,9 @@ Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
 ## Available APIs
 
+
+### Institute APIs
+
 #### Register a new user
 ### `http://localhost:5000/api/users/register`
 Sample Request Body
@@ -61,7 +64,15 @@ Sample Request Body (Update only send updated fields)
 ```
 
 ####  Get A user
-### `http://localhost:5000/api//users/:userId/profile`
+### `http://localhost:5000/api/users/:userId/profile`
 
 #### Get All User
-### `http://localhost:5000/api//users/:userId/profile`
+### `http://localhost:5000/api/users/:userId/profile`
+
+#### Logout a user
+### `http://localhost:5000/api/users/logout`
+
+#### Delete a user
+### `http://localhost:5000/api/users/:userId/deleteUser`
+
+

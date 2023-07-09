@@ -6,10 +6,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    email: {
+    age: {
         type: String,
         required: true,
-        unique: true,
     },
     password: {
         type: String,
@@ -31,9 +30,17 @@ const userSchema = mongoose.Schema({
         type: String,
         required: false,
     },
-    creationDate: {
-        type: Date,
-        default: () => Date.now(),
+    gender: {
+        type: String,
+        required: false,
+    },
+    parentName: {
+        type: String,
+        required: false,
+    },
+    location: {
+        type: Object,
+        required: false,
     }
 }, {
     timestamps: true,
