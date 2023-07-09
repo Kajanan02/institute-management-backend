@@ -60,7 +60,6 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid user Data')
     }
-
 });
 
 //@desc Logout user
@@ -103,10 +102,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 });
 const getAllUsers = asyncHandler(async (req, res) => {
-    // console.log(req.params.id)
-    // let data = User.findOne({})
-    // console.log(data)
-    // res.status(200).json(data);
+
     try {
         const users = await User.find({});
         res.json(users);

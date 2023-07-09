@@ -50,7 +50,7 @@ Sample Request Body
 ```
 
 #### Update a user
-### `http://localhost:5000/users/:userId/profile`
+### `http://localhost:5000/api/users/:userId/profile`
 Sample Request Body (Update only send updated fields) 
 ```
 {
@@ -74,5 +74,56 @@ Sample Request Body (Update only send updated fields)
 
 #### Delete a user
 ### `http://localhost:5000/api/users/:userId/deleteUser`
+
+
+### Student APIs
+
+#### Register a new student
+### `http://localhost:5000/api/institute/:instituteId/createStudent`
+Sample Request Body
+```
+{
+    "name":"Kajanan",
+    "age":"kajanan202s000@gmail.com",
+    "password":"1234567",
+    "role":2,
+    "phoneNumber":"0762925096",
+    "address":"Vavuniya",
+    "profilePic":"img-url"
+    "gender":"img-url"
+    "parentName":"img-url"
+    "instituteId":"img-url"
+    "nicNo":"img-url"
+    "location":"img-url"
+}
+```
+
+#### Update a student
+### `http://localhost:5000/api/institute/:instituteId/student/:id`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "name":"Kajanan",
+    "age":"kajanan202s000@gmail.com",
+    "phoneNumber":"0762925096",
+    "address":"Vavuniya",
+    "profilePic":"img-url"
+    "gender":"img-url"
+    "parentName":"img-url"
+    "instituteId":"img-url"
+    "nicNo":"img-url"
+    "location":"img-url"
+}
+```
+
+####  Get A Student
+### `http://localhost:5000/api/institute/:instituteId/student/:id`
+
+#### Get All Students
+### `http://localhost:5000/api/institute/:instituteI/getAllStudents`
+
+#### Delete Student
+### `http://localhost:5000/api/institute/:instituteId/student/:id`
+
 
 
