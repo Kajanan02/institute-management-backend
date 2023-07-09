@@ -67,7 +67,7 @@ Sample Request Body (Update only send updated fields)
 ### `http://localhost:5000/api/users/:userId/profile`
 
 #### Get All User
-### `http://localhost:5000/api/users/:userId/profile`
+### `http://localhost:5000/api/users/allprofile`
 
 #### Logout a user
 ### `http://localhost:5000/api/users/logout`
