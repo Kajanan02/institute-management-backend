@@ -54,13 +54,13 @@ const registerUser = asyncHandler(async (req, res) => {
             phoneNumber: user.phoneNumber,
             address: user.address,
             profilePic: user.profilePic,
+            subject: user.subject,
             creationDate: user.creationDate,
         })
     } else {
         res.status(400);
         throw new Error('Invalid user Data')
     }
-
 });
 
 //@desc Logout user
@@ -94,6 +94,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             phoneNumber: user.phoneNumber,
             role: user.role,
             address: user.address,
+            subject: user.subject,
             profilePic: user.profilePic,
             creationDate: user.creationDate,
         })
@@ -103,10 +104,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 });
 const getAllUsers = asyncHandler(async (req, res) => {
-    // console.log(req.params.id)
-    // let data = User.findOne({})
-    // console.log(data)
-    // res.status(200).json(data);
+
     try {
         const users = await User.find({});
         res.json(users);
@@ -129,6 +127,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
+        user.subject = req.body.subject || user.subject;
         user.address = req.body.address || user.address;
         user.profilePic = req.body.profilePic || user.profilePic;
 
@@ -146,6 +145,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             email: updatedUser.email,
             phoneNumber: updatedUser.phoneNumber,
             address: updatedUser.address,
+            subject: updatedUser.subject,
             profilePic: updatedUser.profilePic,
             creationDate: user.creationDate,
         });

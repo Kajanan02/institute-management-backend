@@ -19,6 +19,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    subject: {
+        type: [String],
+    },
     phoneNumber: {
         type: String,
         required: true,
