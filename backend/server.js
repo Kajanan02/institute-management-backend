@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import {errorHandler, notFound} from "./middleware/errorMiddleware.js";
 import userRoutes from './routes/userRoutes.js';
 import studentRoutes from "./routes/studentRoutes.js";
+import marksRoutes from "./routes/marksRoutes.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/api/users', userRoutes);
 app.use('/api/institute', studentRoutes);
+app.use('/api/institute', marksRoutes);
 
 
 app.use(notFound);

@@ -126,4 +126,35 @@ Sample Request Body (Update only send updated fields)
 ### `http://localhost:5000/api/institute/:instituteId/student/:id`
 
 
+### Marks APIs
+
+##### Add Marks
+### `http://localhost:5000/api/institute/:instituteId/createMarks`
+Sample Request Body
+```
+{
+    "subject": "Maths",
+    "studentId": "64aaf99d5220f71ec9650b47",
+    "marks":"92"
+}
+```
+
+##### Edit Marks
+### `http://localhost:5000/api/institute/:instituteId/createMarks`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "subject": "Maths",
+    "studentId": "64aaf99d5220f71ec9650b47",
+    "marks":"92"
+}
+```
+
+#### Get All Marks
+### `http://localhost:5000/api/institute/:instituteI/getAllMarks`
+
+
+#### Delete Student
+### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
+
 
