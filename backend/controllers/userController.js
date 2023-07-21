@@ -10,12 +10,12 @@ const authUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email})
     if (user && (await user.matchPassword(password))) {
-       let token = generateToken(res, user._id)
+        let token = generateToken(res, user._id)
         res.status(200).json({
             _id: user._id,
             name: user.name,
             email: user.email,
-            token:token
+            token: token
         })
     }
 
@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const {
         name, email, password, phoneNumber,
         address,
-        profilePic,role
+        profilePic, role
     } = req.body;
     const userExists = await User.findOne({email})
     if (userExists) {
@@ -41,7 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const user = await User.create({
-        name, email, password, phoneNumber, address, profilePic,role
+        name, email, password, phoneNumber, address, profilePic, role
     });
 
     if (user) {
@@ -170,4 +170,4 @@ const deleteUser = asyncHandler(async (req, res) => {
 })
 
 
-export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getAllUsers,deleteUser};
+export {authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getAllUsers, deleteUser};

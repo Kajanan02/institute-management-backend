@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-const   studentSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,

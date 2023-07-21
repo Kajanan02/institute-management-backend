@@ -3,7 +3,6 @@ import Student from "../modals/studentModal.js";
 import generateToken from "../utils/generateToken.js";
 
 
-
 //@desc Register a new student
 //route POST/api/student/register
 //@access Public
@@ -115,8 +114,7 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
             location: updatedUser.location,
             createdAt: updatedUser.createdAt,
         })
-    }
-    else {
+    } else {
         res.status(404);
         throw new Error('User not found');
     }
@@ -129,7 +127,7 @@ const deleteStudent = asyncHandler(async (req, res) => {
     if (student) {
         await student.deleteOne();
         res.json({message: 'Student removed'})
-    }else {
+    } else {
         res.status(404);
         throw new Error('Student not found');
     }
@@ -148,4 +146,4 @@ const getAllStudents = asyncHandler(async (req, res) => {
     }
 });
 
-export {createStudent, getStudentProfile,updateStudentProfile,deleteStudent,getAllStudents};
+export {createStudent, getStudentProfile, updateStudentProfile, deleteStudent, getAllStudents};
