@@ -1,7 +1,8 @@
 import express from "express";
 import {
     createStudent,
-    deleteStudent, getAllStudents,
+    deleteStudent,
+    getAllStudents,
     getStudentProfile,
     updateStudentProfile
 } from "../controllers/studentController.js";

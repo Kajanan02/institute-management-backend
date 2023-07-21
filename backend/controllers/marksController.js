@@ -3,7 +3,6 @@ import asyncHandler from "express-async-handler";
 import Student from "../modals/studentModal.js";
 
 
-
 const createMarks = asyncHandler(async (req, res) => {
     const {subject, marks, studentId} = req.body;
 
@@ -14,7 +13,7 @@ const createMarks = asyncHandler(async (req, res) => {
             subject,
             marks,
             studentId,
-            name:student.name
+            name: student.name
         });
         // console.log(student)
 
@@ -23,11 +22,11 @@ const createMarks = asyncHandler(async (req, res) => {
             res.status(201).json({
                 _id: mark._id,
                 name: mark.name,
-               subject:mark.subject,
-                marks:mark.marks,
-                studentId:mark.studentId,
+                subject: mark.subject,
+                marks: mark.marks,
+                studentId: mark.studentId,
             })
-        }else {
+        } else {
             res.status(400);
             throw new Error('Invalid user Data')
         }
@@ -79,13 +78,13 @@ const deleteMarks = asyncHandler(async (req, res) => {
     if (marks) {
         await marks.deleteOne();
         res.json({message: 'Marks removed'})
-    }else {
+    } else {
         res.status(404);
         throw new Error('Marks not found');
     }
 })
 
-export {createMarks, getAllMarks,editMarks,deleteMarks};
+export {createMarks, getAllMarks, editMarks, deleteMarks};
 
 
 

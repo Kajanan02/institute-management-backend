@@ -9,24 +9,26 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
-
 ## Available Roles
 
 ### 1. Admin => role: 1
+
 ### 2. Institute => role: 2
+
 ### 3. Student => role: 3
+
 ### 4. Parent => role: 4
 
-
-
 ## Available APIs
-
 
 ### Institute APIs
 
 #### Register a new user
+
 ### `http://localhost:5000/api/users/register`
+
 Sample Request Body
+
 ```
 {
     "name":"Kajanan",
@@ -40,8 +42,11 @@ Sample Request Body
 ```
 
 #### Auth a user
+
 ### `http://localhost:5000/api/users/register`
+
 Sample Request Body
+
 ```
 {
     "email":"kajanan202s000@gmail.com",
@@ -50,8 +55,11 @@ Sample Request Body
 ```
 
 #### Update a user
+
 ### `http://localhost:5000/api/users/:userId/profile`
-Sample Request Body (Update only send updated fields) 
+
+Sample Request Body (Update only send updated fields)
+
 ```
 {
     "name":"Kajanan",
@@ -63,24 +71,30 @@ Sample Request Body (Update only send updated fields)
 }
 ```
 
-####  Get A user
+#### Get A user
+
 ### `http://localhost:5000/api/users/:userId/profile`
 
 #### Get All User
+
 ### `http://localhost:5000/api/users/allprofile`
 
 #### Logout a user
+
 ### `http://localhost:5000/api/users/logout`
 
 #### Delete a user
-### `http://localhost:5000/api/users/:userId/deleteUser`
 
+### `http://localhost:5000/api/users/:userId/deleteUser`
 
 ### Student APIs
 
 #### Register a new student
+
 ### `http://localhost:5000/api/institute/:instituteId/createStudent`
+
 Sample Request Body
+
 ```
 {
     "name":"Kajanan",
@@ -99,8 +113,11 @@ Sample Request Body
 ```
 
 #### Update a student
+
 ### `http://localhost:5000/api/institute/:instituteId/student/:id`
+
 Sample Request Body (Update only send updated fields)
+
 ```
 {
     "name":"Kajanan",
@@ -116,21 +133,26 @@ Sample Request Body (Update only send updated fields)
 }
 ```
 
-####  Get A Student
+#### Get A Student
+
 ### `http://localhost:5000/api/institute/:instituteId/student/:id`
 
 #### Get All Students
+
 ### `http://localhost:5000/api/institute/:instituteI/getAllStudents`
 
 #### Delete Student
-### `http://localhost:5000/api/institute/:instituteId/student/:id`
 
+### `http://localhost:5000/api/institute/:instituteId/student/:id`
 
 ### Marks APIs
 
 ##### Add Marks
+
 ### `http://localhost:5000/api/institute/:instituteId/createMarks`
+
 Sample Request Body
+
 ```
 {
     "subject": "Maths",
@@ -140,8 +162,11 @@ Sample Request Body
 ```
 
 ##### Edit Marks
+
 ### `http://localhost:5000/api/institute/:instituteId/createMarks`
+
 Sample Request Body (Update only send updated fields)
+
 ```
 {
     "subject": "Maths",
@@ -151,10 +176,11 @@ Sample Request Body (Update only send updated fields)
 ```
 
 #### Get All Marks
+
 ### `http://localhost:5000/api/institute/:instituteI/getAllMarks`
 
-
 #### Delete Student
+
 ### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
 
 

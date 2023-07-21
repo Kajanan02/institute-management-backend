@@ -6,13 +6,13 @@ const marksSchema = new mongoose.Schema({
         type: String,
     },
     marks: {
-       type: String,
+        type: String,
     },
     name: {
-       type: String,
+        type: String,
     },
     studentId: {
-       type: String,
+        type: String,
     }
 });
 
