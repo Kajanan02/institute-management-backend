@@ -6,7 +6,7 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    age: {
+    dob: {
         type: String,
         required: true,
     },
@@ -28,6 +28,22 @@ const studentSchema = mongoose.Schema({
     },
     profilePic: {
         type: String,
+        required: false,
+    },
+    nicFront: {
+        type: String,
+        required: false,
+    },
+    nicBack: {
+        type: String,
+        required: false,
+    },
+    email: {
+        type: String,
+        required: false,
+    },
+    subjects: {
+        type: [String],
         required: false,
     },
     gender: {

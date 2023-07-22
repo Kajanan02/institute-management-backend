@@ -10,7 +10,10 @@ import generateToken from "../utils/generateToken.js";
 const createStudent = asyncHandler(async (req, res) => {
     console.log(req.body);
     const {
-        name, age, password, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
+        name, dob, password,nicFront,
+        nicBack,
+        email,
+        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
     } = req.body;
 
     const studentExists = await Student.findOne({nicNo})
@@ -20,15 +23,22 @@ const createStudent = asyncHandler(async (req, res) => {
     }
 
     const student = await Student.create({
-        name, age, password, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
+        name, dob, password, nicFront,
+        nicBack,
+        email,
+        subjects,role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
     });
 
     if (student) {
         generateToken(res, student._id)
         res.status(201).json({
             name: student.name,
-            age: student.age,
             password: student.password,
+            dob: student.dob,
+            nicFront :student.nicFront,
+            nicBack :student.nicBack,
+            email :student.email,
+            subjects :student.subjects,
             role: student.role,
             phoneNumber: student.phoneNumber,
             address: student.address,
@@ -61,6 +71,11 @@ const getStudentProfile = asyncHandler(async (req, res) => {
             password: student.password,
             role: student.role,
             phoneNumber: student.phoneNumber,
+            dob: student.dob,
+            nicFront :student.nicFront,
+            nicBack :student.nicBack,
+            email :student.email,
+            subjects :student.subjects,
             address: student.address,
             profilePic: student.profilePic,
             gender: student.gender,
@@ -81,6 +96,11 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
     if (student) {
         student.name = req.body.name || student.name
         student.age = req.body.age || student.age
+        student.dob = req.body.dob || student.dob
+        student.nicFront = req.body.nicFront || student.nicFront
+        student.nicBack = req.body.nicBack || student.nicBack
+        student.email = req.body.email || student.email
+        student.subjects = req.body.subjects || student.subjects
         student.phoneNumber = req.body.phoneNumber || student.phoneNumber
         student.address = req.body.address || student.address
         student.profilePic = req.body.profilePic || student.profilePic
@@ -104,6 +124,11 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
             age: updatedUser.age,
             role: updatedUser.role,
             phoneNumber: updatedUser.phoneNumber,
+            dob: student.dob,
+            nicFront :student.nicFront,
+            nicBack :student.nicBack,
+            email :student.email,
+            subjects :student.subjects,
             address: updatedUser.address,
             profilePic: updatedUser.profilePic,
             subject: updatedUser.subject,
