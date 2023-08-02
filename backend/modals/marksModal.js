@@ -13,6 +13,9 @@ const marksSchema = new mongoose.Schema({
     },
     studentId: {
         type: String,
+    },
+    date: {
+        type: Date,
     }
 });
 

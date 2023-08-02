@@ -4,7 +4,7 @@ import Student from "../modals/studentModal.js";
 
 
 const createMarks = asyncHandler(async (req, res) => {
-    const {subject, marks, studentId} = req.body;
+    const {subject, marks, studentId,date} = req.body;
 
     console.log(req.body)
     const student = await Student.findById(studentId);
@@ -12,6 +12,7 @@ const createMarks = asyncHandler(async (req, res) => {
         const mark = await Marks.create({
             subject,
             marks,
+            date,
             studentId,
             name: student.name
         });
@@ -22,6 +23,7 @@ const createMarks = asyncHandler(async (req, res) => {
             res.status(201).json({
                 _id: mark._id,
                 name: mark.name,
+                date: mark.date,
                 subject: mark.subject,
                 marks: mark.marks,
                 studentId: mark.studentId,
@@ -42,6 +44,7 @@ const editMarks = asyncHandler(async (req, res) => {
     if (marks) {
         marks.subject = req.body.subject || marks.subject;
         marks.marks = req.body.marks || marks.marks;
+        marks.date = req.body.date || marks.date;
         marks.studentId = req.body.studentId || marks.studentId;
         if (req.body.studentId) {
             const student = await Student.findById(req.body.studentId);
@@ -51,6 +54,7 @@ const editMarks = asyncHandler(async (req, res) => {
         res.json({
             _id: updatedMarks._id,
             name: updatedMarks.name,
+            date:updatedMarks.date,
             subject: updatedMarks.subject,
             marks: updatedMarks.marks,
             studentId: updatedMarks.studentId,
@@ -72,6 +76,17 @@ const getAllMarks = asyncHandler(async (req, res) => {
     }
 });
 
+const getMarksByStudent = asyncHandler(async (req, res) => {
+    let _id = req.params.id
+    try {
+        const marks = await Marks.find({ studentId: _id});
+        res.json(marks);
+    } catch (err) {
+        console.error('Failed to fetch users from MongoDB:', err);
+        res.status(500).send('Failed to fetch users from MongoDB');
+    }
+});
+
 const deleteMarks = asyncHandler(async (req, res) => {
     let _id = req.params.id
     const marks = await Marks.findById(_id)
@@ -84,7 +99,7 @@ const deleteMarks = asyncHandler(async (req, res) => {
     }
 })
 
-export {createMarks, getAllMarks, editMarks, deleteMarks};
+export {createMarks, getAllMarks, editMarks, deleteMarks,getMarksByStudent};
 
 
 

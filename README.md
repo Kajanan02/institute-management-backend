@@ -102,6 +102,11 @@ Sample Request Body
     "password":"1234567",
     "role":2,
     "phoneNumber":"0762925096",
+    "dob":"03/05/2000"
+    "nicFront":""
+    "nicBack":""
+    "email":""
+    "subjects":["String"]
     "address":"Vavuniya",
     "profilePic":"img-url"
     "gender":"img-url"
@@ -126,6 +131,11 @@ Sample Request Body (Update only send updated fields)
     "address":"Vavuniya",
     "profilePic":"img-url"
     "gender":"img-url"
+    "dob":"03/05/2000"
+    "nicFront":""
+    "nicBack":""
+    "email":""
+    "subjects":["String"]
     "parentName":"img-url"
     "instituteId":"img-url"
     "nicNo":"img-url"
@@ -157,7 +167,8 @@ Sample Request Body
 {
     "subject": "Maths",
     "studentId": "64aaf99d5220f71ec9650b47",
-    "marks":"92"
+    "marks":"92",
+    "date": "2023-07-15"
 }
 ```
 
@@ -171,13 +182,18 @@ Sample Request Body (Update only send updated fields)
 {
     "subject": "Maths",
     "studentId": "64aaf99d5220f71ec9650b47",
-    "marks":"92"
+    "marks":"92",
+    "date": "2023-07-15"
 }
 ```
 
+#### Get Marks By Student
+
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/marks`
+
 #### Get All Marks
 
-### `http://localhost:5000/api/institute/:instituteI/getAllMarks`
+### `http://localhost:5000/api/institute/:instituteId/getAllMarks`
 
 #### Delete Student
 
