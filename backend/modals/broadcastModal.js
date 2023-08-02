@@ -1,29 +1,25 @@
 import mongoose from "mongoose";
 
 
-const marksSchema = new mongoose.Schema({
-    subject: {
+const broadcastSchema = new mongoose.Schema({
+    instituteId: {
         type: String,
         required: true
     },
-    marks: {
+    message: {
         type: String,
         required: true
     },
-    name: {
+    messageTopic: {
         type: String,
         required: true
     },
-    studentId: {
+    sender: {
         type: String,
-        required: true
-    },
-    date: {
-        type: Date,
         required: true
     }
 });
 
-const Marks = mongoose.model('marks', marksSchema);
+const Broadcast = mongoose.model('broadcast', broadcastSchema);
 
-export default Marks;
+export default Broadcast;
