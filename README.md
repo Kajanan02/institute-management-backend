@@ -200,3 +200,24 @@ Sample Request Body (Update only send updated fields)
 ### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
 
 
+### Fees APIs
+
+
+##### Add Fees
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/fees`
+
+Sample Request Body (Update only send updated fields)
+
+```
+{
+    "method": "Online",
+    "status": "64aaf99d5220f71ec9650b47",
+    "feesAmount":"92",
+    "date": "2023-07-15"
+}
+```
+
+##### getAllFees
+### `http://localhost:5000/api/institute/:instituteId/fees`
+
+
