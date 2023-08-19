@@ -1,10 +1,11 @@
 import express from "express";
-import {createBroadcast} from "../controllers/broadcastController.js";
+import {createBroadcast, studentNotification} from "../controllers/broadcastController.js";
 
 
 const router = express.Router();
 
 router.route('/:instituteId/broadcast').post(createBroadcast);
+router.route('/:instituteId/student/:studentId/broadcast').get(studentNotification);
 
 
 export default router;

@@ -220,4 +220,20 @@ Sample Request Body (Update only send updated fields)
 ##### getAllFees
 ### `http://localhost:5000/api/institute/:instituteId/fees`
 
+### Broadcast APIs
+
+##### Add Broadcast
+### `http://localhost:5000/api/institute/:instituteId/broadcast`
+
+```
+{
+    "message": "No class createdAt createdAt",
+    "messageTopic": "Cancel class createdAt createdAt",
+    "sender":"Chemistry",
+}
+```
+
+##### getBroadcastByStudent
+
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/broadcast`
 

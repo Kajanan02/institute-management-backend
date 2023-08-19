@@ -15,7 +15,8 @@ const createBroadcast = asyncHandler(async (req, res) => {
             instituteId: broadcast.instituteId,
             message: broadcast.message,
             messageTopic: broadcast.messageTopic,
-            sender: broadcast.sender
+            sender: broadcast.sender,
+            createdAt: broadcast.createdAt,
         })
     }
     else{
@@ -24,4 +25,22 @@ const createBroadcast = asyncHandler(async (req, res) => {
     }
 })
 
-export {createBroadcast}
+const studentNotification = asyncHandler(async (req, res) => {
+    const student = await Student.findById(req.params.studentId);
+    let broadcast
+    if(student){
+        broadcast = await Broadcast.find({sender: { $in: student.subjects }});
+    }else {
+        res.status(404);
+        throw new Error('Students not found')
+    }
+    if (student) {
+        res.json(broadcast);
+    } else {
+        res.status(404);
+        throw new Error('Student not found')
+    }
+
+})
+
+export {createBroadcast,studentNotification}
