@@ -8,6 +8,7 @@ import studentRoutes from "./routes/studentRoutes.js";
 import marksRoutes from "./routes/marksRoutes.js";
 import feesRoutes from "./routes/feesRoutes.js";
 import broadcastRoutes from "./routes/broadcastRoutes.js";
+import calenderRoutes from "./routes/calenderRoutes.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use('/api/institute', studentRoutes);
 app.use('/api/institute', marksRoutes);
 app.use('/api/institute', feesRoutes);
 app.use('/api/institute', broadcastRoutes);
+app.use('/api/institute', calenderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

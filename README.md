@@ -237,3 +237,32 @@ Sample Request Body (Update only send updated fields)
 
 ### `http://localhost:5000/api/institute/:instituteId/student/:studentId/broadcast`
 
+### Calender APIs
+
+##### Add Calender
+### `http://localhost:5000/api/institute/:instituteId/calender`
+
+```
+{
+    "title": "No class",
+    "start": "No class",
+    "end":"2021-07-15",
+}
+```
+
+##### getCalender
+### `http://localhost:5000/api/institute/:instituteId/calender`
+
+##### Delete Calender
+### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
+
+##### Edit Calender
+### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
+
+```
+{
+    "title": "No class",
+    "start": "No class",
+    "end":"2021-07-15",
+}
+```
