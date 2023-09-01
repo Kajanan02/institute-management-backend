@@ -172,6 +172,34 @@ Sample Request Body
 }
 ```
 
+##### Add Marks List
+
+### `http://localhost:5000/api/institute/:instituteId/createMarksList`
+
+Sample Request Body
+
+```
+[
+    {
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    },{
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    },{
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    }
+]
+```
+
+
 ##### Edit Marks
 
 ### `http://localhost:5000/api/institute/:instituteId/createMarks`
@@ -237,3 +265,32 @@ Sample Request Body (Update only send updated fields)
 
 ### `http://localhost:5000/api/institute/:instituteId/student/:studentId/broadcast`
 
+### Calender APIs
+
+##### Add Calender
+### `http://localhost:5000/api/institute/:instituteId/calender`
+
+```
+{
+    "title": "No class",
+    "start": "No class",
+    "end":"2021-07-15",
+}
+```
+
+##### getCalender
+### `http://localhost:5000/api/institute/:instituteId/calender`
+
+##### Delete Calender
+### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
+
+##### Edit Calender
+### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
+
+```
+{
+    "title": "No class",
+    "start": "No class",
+    "end":"2021-07-15",
+}
+```

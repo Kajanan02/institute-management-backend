@@ -8,12 +8,17 @@ import studentRoutes from "./routes/studentRoutes.js";
 import marksRoutes from "./routes/marksRoutes.js";
 import feesRoutes from "./routes/feesRoutes.js";
 import broadcastRoutes from "./routes/broadcastRoutes.js";
+import calenderRoutes from "./routes/calenderRoutes.js";
+import cors from 'cors';
+import parentRoutes from "./routes/parentRoutes.js";
 
 dotenv.config();
 
 connectDB();
 const port = process.env.PORT || 5000;
 const app = express();
+// Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
@@ -23,8 +28,10 @@ app.use(express.urlencoded({extended: true}))
 app.use('/api/users', userRoutes);
 app.use('/api/institute', studentRoutes);
 app.use('/api/institute', marksRoutes);
+app.use('/api/institute', parentRoutes);
 app.use('/api/institute', feesRoutes);
 app.use('/api/institute', broadcastRoutes);
+app.use('/api/institute', calenderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

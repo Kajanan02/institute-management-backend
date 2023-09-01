@@ -10,6 +10,7 @@ const createBroadcast = asyncHandler(async (req, res) => {
         instituteId, message, messageTopic, sender
     })
     if(broadcast){
+        // sendPushNotification("Usfwer", "messageTopic")
         res.status(201).json({
             _id: broadcast._id,
             instituteId: broadcast.instituteId,
