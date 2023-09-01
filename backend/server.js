@@ -9,12 +9,15 @@ import marksRoutes from "./routes/marksRoutes.js";
 import feesRoutes from "./routes/feesRoutes.js";
 import broadcastRoutes from "./routes/broadcastRoutes.js";
 import calenderRoutes from "./routes/calenderRoutes.js";
+import cors from 'cors';
 
 dotenv.config();
 
 connectDB();
 const port = process.env.PORT || 5000;
 const app = express();
+// Enable CORS for all routes
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 

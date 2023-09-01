@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
 
 // const serviceAccount = require('./pushnotifydemo-33efb-firebase-adminsdk-m6im5-9a44a68765.json'); // Replace with the path to your service account key JSON file
-import serviceAccount from "./pushnotifydemo-33efb-firebase-adminsdk-m6im5-9a44a68765.json" assert { type: "json" };
+import serviceAccount from "../pushnotifydemo-33efb-firebase-adminsdk-m6im5-9a44a68765.json" assert { type: "json" };
 const serverKey = process.env.FIREBASE_SERVER_KEY; // Replace with your Firebase server key
 
 admin.initializeApp({

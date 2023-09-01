@@ -2,7 +2,6 @@ import asyncHandler from "express-async-handler";
 import Student from "../modals/studentModal.js";
 import Marks from "../modals/marksModal.js";
 import Broadcast from "../modals/broadcastModal.js";
-import sendPushNotification from "../push-notification-firebase.js";
 
 const createBroadcast = asyncHandler(async (req, res) => {
     const {message, messageTopic, sender} = req.body;
@@ -11,7 +10,7 @@ const createBroadcast = asyncHandler(async (req, res) => {
         instituteId, message, messageTopic, sender
     })
     if(broadcast){
-        sendPushNotification("Usfwer", "messageTopic")
+        // sendPushNotification("Usfwer", "messageTopic")
         res.status(201).json({
             _id: broadcast._id,
             instituteId: broadcast.instituteId,

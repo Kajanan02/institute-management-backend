@@ -1,22 +1,59 @@
 import asyncHandler from 'express-async-handler';
 import generateToken from "../utils/generateToken.js";
 import User from "../modals/userModal.js";
+import Student from "../modals/studentModal.js";
 
 //@desc Auth user / setToken
 //route POST/api/users/auth
 //@access Public
 const authUser = asyncHandler(async (req, res) => {
 
-    const {email, password} = req.body;
-    const user = await User.findOne({email})
-    if (user && (await user.matchPassword(password))) {
-        let token = generateToken(res, user._id)
-        res.status(200).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: token
-        })
+    const {username, password} = req.body;
+    if(/\S+@\S+\.\S+/.test(username)) {
+        const user = await User.findOne({email: username})
+        if (user && (await user.matchPassword(password))) {
+            let token = generateToken(res, user._id)
+            res.status(200).json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                role: user.role,
+                address: user.address,
+                subject: user.subject,
+                profilePic: user.profilePic,
+                creationDate: user.creationDate,
+                token: token
+            })
+        }
+    }else {
+        const student = await Student.findOne({nicNo: username})
+        if (student && (await student.matchPassword(password))) {
+            let token = generateToken(res, student._id)
+            res.status(200).json({
+                _id: student._id,
+                name: student.name,
+                age: student.age,
+                password: student.password,
+                role: student.role,
+                phoneNumber: student.phoneNumber,
+                dob: student.dob,
+                nicFront :student.nicFront,
+                nicBack :student.nicBack,
+                email :student.email,
+                subjects :student.subjects,
+                address: student.address,
+                profilePic: student.profilePic,
+                gender: student.gender,
+                subject: student.subject,
+                nicNo: student.nicNo,
+                parentName: student.parentName,
+                instituteId: student.instituteId,
+                location: student.location,
+                creationDate: student.creationDate,
+                token: token
+            })
+        }
     }
 
     res.status(401).json({message: 'Email or password is incorrect'});

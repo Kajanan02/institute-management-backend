@@ -172,6 +172,34 @@ Sample Request Body
 }
 ```
 
+##### Add Marks List
+
+### `http://localhost:5000/api/institute/:instituteId/createMarksList`
+
+Sample Request Body
+
+```
+[
+    {
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    },{
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    },{
+        "subject": "Maths",
+        "studentId": "64aaf99d5220f71ec9650b47",
+        "marks":"92",
+        "date": "2023-07-15"
+    }
+]
+```
+
+
 ##### Edit Marks
 
 ### `http://localhost:5000/api/institute/:instituteId/createMarks`
