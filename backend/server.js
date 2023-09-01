@@ -10,6 +10,7 @@ import feesRoutes from "./routes/feesRoutes.js";
 import broadcastRoutes from "./routes/broadcastRoutes.js";
 import calenderRoutes from "./routes/calenderRoutes.js";
 import cors from 'cors';
+import parentRoutes from "./routes/parentRoutes.js";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/api/users', userRoutes);
 app.use('/api/institute', studentRoutes);
 app.use('/api/institute', marksRoutes);
+app.use('/api/institute', parentRoutes);
 app.use('/api/institute', feesRoutes);
 app.use('/api/institute', broadcastRoutes);
 app.use('/api/institute', calenderRoutes);
