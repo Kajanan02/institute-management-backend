@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 import generateToken from "../utils/generateToken.js";
 import User from "../modals/userModal.js";
 import Student from "../modals/studentModal.js";
+import Parent from "../modals/parentModal.js";
 
 //@desc Auth user / setToken
 //route POST/api/users/auth
@@ -9,11 +10,11 @@ import Student from "../modals/studentModal.js";
 const authUser = asyncHandler(async (req, res) => {
 
     const {username, password} = req.body;
-    if(/\S+@\S+\.\S+/.test(username)) {
+    if (/\S+@\S+\.\S+/.test(username)) {
         const user = await User.findOne({email: username})
         if (user && (await user.matchPassword(password))) {
             let token = generateToken(res, user._id)
-            res.status(200).json({
+            return  res.status(200).json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
@@ -26,33 +27,22 @@ const authUser = asyncHandler(async (req, res) => {
                 token: token
             })
         }
-    }else {
+    } else {
         const student = await Student.findOne({nicNo: username})
         if (student && (await student.matchPassword(password))) {
             let token = generateToken(res, student._id)
-            res.status(200).json({
-                _id: student._id,
-                name: student.name,
-                age: student.age,
-                password: student.password,
-                role: student.role,
-                phoneNumber: student.phoneNumber,
-                dob: student.dob,
-                nicFront :student.nicFront,
-                nicBack :student.nicBack,
-                email :student.email,
-                subjects :student.subjects,
-                address: student.address,
-                profilePic: student.profilePic,
-                gender: student.gender,
-                subject: student.subject,
-                nicNo: student.nicNo,
-                parentName: student.parentName,
-                instituteId: student.instituteId,
-                location: student.location,
-                creationDate: student.creationDate,
-                token: token
-            })
+            let studentData = student._doc
+            studentData.token = token
+            return res.status(200).json(studentData)
+        } else {
+            const parent = await Parent.findOne({nicNo: username})
+            if (parent && (await parent.matchPassword(password))) {
+                let token = generateToken(res, parent._id)
+                let parentData = parent._doc
+                parentData.token = token
+                return  res.status(200).json(parentData)
+            }
+
         }
     }
 
@@ -64,7 +54,6 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 
 const registerUser = asyncHandler(async (req, res) => {
-    console.log(req.body);
 
     const {
         name, email, password, phoneNumber,
@@ -156,11 +145,9 @@ const getAllUsers = asyncHandler(async (req, res) => {
 //@access Private
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-    console.log(req.params.id)
     let _id = req.params.id
     const user = await User.findById(_id)
     if (user) {
-        console.log(user)
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber;
@@ -172,7 +159,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             user.password = req.body.password;
         }
 
-        console.log(req.body)
 
         const updatedUser = await user.save();
 
@@ -195,7 +181,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 const deleteUser = asyncHandler(async (req, res) => {
     let _id = req.params.id
     const user = await User.findById(_id);
-    console.log(user)
     if (user) {
         await user.deleteOne();
         res.json({message: 'User removed'});
