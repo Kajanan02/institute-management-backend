@@ -1,5 +1,4 @@
 import asyncHandler from "express-async-handler";
-import Student from "../modals/studentModal.js";
 import generateToken from "../utils/generateToken.js";
 import Parent from "../modals/parentModal.js";
 
@@ -19,7 +18,8 @@ const createParent = asyncHandler(async (req, res) => {
         instituteId,
         email,
         nicNo,
-        location} = req.body;
+        location
+    } = req.body;
 
 
     const parentExists = await Parent.findOne({studentId})
@@ -63,7 +63,7 @@ const getParentProfile = asyncHandler(async (req, res) => {
     const parent = await Parent.findById(_id)
     if (parent) {
         res.json(parent)
-    }else {
+    } else {
         res.status(400);
         throw new Error('Invalid parent Data')
     }
@@ -119,4 +119,4 @@ const deleteParent = asyncHandler(async (req, res) => {
 });
 
 
-export {createParent,getParentProfile,updateParentProfile,deleteParent};
+export {createParent, getParentProfile, updateParentProfile, deleteParent};

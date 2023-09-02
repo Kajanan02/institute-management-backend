@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+
 const saltPw = await bcrypt.genSalt(10);
 const parentSchema = mongoose.Schema({
     name: {
@@ -7,11 +8,11 @@ const parentSchema = mongoose.Schema({
         required: true,
     },
     studentId: {
-        type:  mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     instituteId: {
-        type:  mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     password: {
