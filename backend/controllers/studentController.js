@@ -13,9 +13,9 @@ const createStudent = asyncHandler(async (req, res) => {
         name, dob, password, nicFront,
         nicBack,
         email,
-        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
+        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, location
     } = req.body;
-
+    const instituteId = req.params.instituteId;
     const studentExists = await Student.findOne({nicNo})
     if (studentExists) {
         res.status(400);

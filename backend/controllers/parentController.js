@@ -15,13 +15,11 @@ const createParent = asyncHandler(async (req, res) => {
         address,
         phoneNumber,
         profilePic,
-        instituteId,
         email,
         nicNo,
         location
     } = req.body;
-
-
+    const instituteId = req.params.instituteId;
     const parentExists = await Parent.findOne({studentId})
     console.log(parentExists)
     if (parentExists) {
