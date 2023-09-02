@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Student from "../modals/studentModal.js";
-import Marks from "../modals/marksModal.js";
 import Broadcast from "../modals/broadcastModal.js";
 
 const createBroadcast = asyncHandler(async (req, res) => {
@@ -9,7 +8,7 @@ const createBroadcast = asyncHandler(async (req, res) => {
     const broadcast = await Broadcast.create({
         instituteId, message, messageTopic, sender
     })
-    if(broadcast){
+    if (broadcast) {
         // sendPushNotification("Usfwer", "messageTopic")
         res.status(201).json({
             _id: broadcast._id,
@@ -19,8 +18,7 @@ const createBroadcast = asyncHandler(async (req, res) => {
             sender: broadcast.sender,
             createdAt: broadcast.createdAt,
         })
-    }
-    else{
+    } else {
         res.status(400);
         throw new Error("Invalid user Data")
     }
@@ -29,9 +27,9 @@ const createBroadcast = asyncHandler(async (req, res) => {
 const studentNotification = asyncHandler(async (req, res) => {
     const student = await Student.findById(req.params.studentId);
     let broadcast
-    if(student){
-        broadcast = await Broadcast.find({sender: { $in: student.subjects }});
-    }else {
+    if (student) {
+        broadcast = await Broadcast.find({sender: {$in: student.subjects}});
+    } else {
         res.status(404);
         throw new Error('Students not found')
     }
@@ -44,4 +42,4 @@ const studentNotification = asyncHandler(async (req, res) => {
 
 })
 
-export {createBroadcast,studentNotification}
+export {createBroadcast, studentNotification}

@@ -14,7 +14,7 @@ const authUser = asyncHandler(async (req, res) => {
         const user = await User.findOne({email: username})
         if (user && (await user.matchPassword(password))) {
             let token = generateToken(res, user._id)
-            return  res.status(200).json({
+            return res.status(200).json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
@@ -40,7 +40,7 @@ const authUser = asyncHandler(async (req, res) => {
                 let token = generateToken(res, parent._id)
                 let parentData = parent._doc
                 parentData.token = token
-                return  res.status(200).json(parentData)
+                return res.status(200).json(parentData)
             }
 
         }

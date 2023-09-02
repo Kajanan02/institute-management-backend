@@ -199,7 +199,6 @@ Sample Request Body
 ]
 ```
 
-
 ##### Edit Marks
 
 ### `http://localhost:5000/api/institute/:instituteId/createMarks`
@@ -227,11 +226,10 @@ Sample Request Body (Update only send updated fields)
 
 ### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
 
-
 ### Fees APIs
 
-
 ##### Add Fees
+
 ### `http://localhost:5000/api/institute/:instituteId/student/:studentId/fees`
 
 Sample Request Body (Update only send updated fields)
@@ -246,11 +244,13 @@ Sample Request Body (Update only send updated fields)
 ```
 
 ##### getAllFees
+
 ### `http://localhost:5000/api/institute/:instituteId/fees`
 
 ### Broadcast APIs
 
 ##### Add Broadcast
+
 ### `http://localhost:5000/api/institute/:instituteId/broadcast`
 
 ```
@@ -268,6 +268,7 @@ Sample Request Body (Update only send updated fields)
 ### Calender APIs
 
 ##### Add Calender
+
 ### `http://localhost:5000/api/institute/:instituteId/calender`
 
 ```
@@ -279,12 +280,15 @@ Sample Request Body (Update only send updated fields)
 ```
 
 ##### getCalender
+
 ### `http://localhost:5000/api/institute/:instituteId/calender`
 
 ##### Delete Calender
+
 ### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
 
 ##### Edit Calender
+
 ### `http://localhost:5000/api/institute/:instituteId/calender/:calenderId/`
 
 ```

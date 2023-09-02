@@ -2,17 +2,17 @@ import asyncHandler from "express-async-handler";
 import Calender from "../modals/calenderModal.js";
 
 const createCalenderEvent = asyncHandler(async (req, res) => {
-    const { title, start, end} = req.body;
+    const {title, start, end} = req.body;
 
-const calender = await Calender.create({title, start, end})
-    if(calender){
+    const calender = await Calender.create({title, start, end})
+    if (calender) {
         res.status(201).json({
             _id: calender._id,
             title: calender.title,
             start: calender.start,
             end: calender.end,
         })
-    }else {
+    } else {
         res.status(400);
         throw new Error("Invalid user Data")
     }
@@ -42,7 +42,7 @@ const editCalenderEvent = asyncHandler(async (req, res) => {
             start: updatedCalender.start,
             end: updatedCalender.end,
         });
-    }else {
+    } else {
         res.status(404);
         throw new Error('Calender not found')
     }
@@ -52,11 +52,11 @@ const deleteCalenderEvent = asyncHandler(async (req, res) => {
     const calender = await Calender.findById(req.params.id);
     if (calender) {
         await calender.deleteOne();
-        res.json({ message: 'Calender removed' });
+        res.json({message: 'Calender removed'});
     } else {
         res.status(404);
         throw new Error('Calender not found')
     }
 })
 
-export {createCalenderEvent,getCalenderEvent,editCalenderEvent,deleteCalenderEvent}
+export {createCalenderEvent, getCalenderEvent, editCalenderEvent, deleteCalenderEvent}

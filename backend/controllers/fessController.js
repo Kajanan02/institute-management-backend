@@ -3,7 +3,7 @@ import Student from "../modals/studentModal.js";
 import Fees from "../modals/feesModal.js";
 
 const createFees = asyncHandler(async (req, res) => {
-    const { feesAmount, date, status, method} = req.body;
+    const {feesAmount, date, status, method} = req.body;
     const studentId = req.params.studentId;
     const instituteId = req.params.instituteId;
 
@@ -15,9 +15,9 @@ const createFees = asyncHandler(async (req, res) => {
             status,
             feesAmount,
             date,
-            studentId:studentId,
+            studentId: studentId,
             name: student.name,
-            instituteId:instituteId
+            instituteId: instituteId
         });
         console.log(fees)
 
@@ -29,7 +29,7 @@ const createFees = asyncHandler(async (req, res) => {
                 method: fees.method,
                 feesAmount: fees.feesAmount,
                 date: fees.date,
-                instituteId:instituteId,
+                instituteId: instituteId,
                 status: fees.status,
                 studentId: fees.studentId,
             })
@@ -49,9 +49,8 @@ const editFees = asyncHandler(async (req, res) => {
 })
 
 
-
 const getFeesAll = asyncHandler(async (req, res) => {
-    const fees = await Fees.find({instituteId: req.params.instituteId});
+        const fees = await Fees.find({instituteId: req.params.instituteId});
         if (fees) {
             res.json(fees);
         } else {

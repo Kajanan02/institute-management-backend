@@ -4,7 +4,7 @@ import Student from "../modals/studentModal.js";
 
 
 const createMarks = asyncHandler(async (req, res) => {
-    const {subject, marks, studentId,date} = req.body;
+    const {subject, marks, studentId, date} = req.body;
 
     console.log(req.body)
     const student = await Student.findById(studentId);
@@ -54,7 +54,7 @@ const editMarks = asyncHandler(async (req, res) => {
         res.json({
             _id: updatedMarks._id,
             name: updatedMarks.name,
-            date:updatedMarks.date,
+            date: updatedMarks.date,
             subject: updatedMarks.subject,
             marks: updatedMarks.marks,
             studentId: updatedMarks.studentId,
@@ -79,7 +79,7 @@ const getAllMarks = asyncHandler(async (req, res) => {
 const getMarksByStudent = asyncHandler(async (req, res) => {
     let _id = req.params.id
     try {
-        const marks = await Marks.find({ studentId: _id});
+        const marks = await Marks.find({studentId: _id});
         res.json(marks);
     } catch (err) {
         console.error('Failed to fetch users from MongoDB:', err);
@@ -105,7 +105,7 @@ const createMultipleMarks = asyncHandler(async (req, res) => {
     const createdMarksList = [];
 
     for (const marksData of marksList) {
-        const { subject, marks, studentId, date } = marksData;
+        const {subject, marks, studentId, date} = marksData;
 
         const student = await Student.findById(studentId);
         if (!student) {
@@ -139,7 +139,7 @@ const createMultipleMarks = asyncHandler(async (req, res) => {
     res.status(201).json(createdMarksList);
 });
 
-export {createMarks, getAllMarks, editMarks, deleteMarks,getMarksByStudent,createMultipleMarks};
+export {createMarks, getAllMarks, editMarks, deleteMarks, getMarksByStudent, createMultipleMarks};
 
 
 
