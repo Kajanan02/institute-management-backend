@@ -22,7 +22,7 @@ const createParent = asyncHandler(async (req, res) => {
         location} = req.body;
 
 
-    const parentExists = await Parent.findOne({nicNo})
+    const parentExists = await Parent.findOne({studentId})
     console.log(parentExists)
     if (parentExists) {
         res.status(400);
