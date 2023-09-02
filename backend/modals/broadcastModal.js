@@ -18,6 +18,8 @@ const broadcastSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    timestamps: true,
 });
 
 const Broadcast = mongoose.model('broadcast', broadcastSchema);

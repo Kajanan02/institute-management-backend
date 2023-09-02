@@ -10,7 +10,7 @@ import generateToken from "../utils/generateToken.js";
 const createStudent = asyncHandler(async (req, res) => {
     console.log(req.body);
     const {
-        name, dob, password,nicFront,
+        name, dob, password, nicFront,
         nicBack,
         email,
         subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
@@ -26,7 +26,7 @@ const createStudent = asyncHandler(async (req, res) => {
         name, dob, password, nicFront,
         nicBack,
         email,
-        subjects,role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
+        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
     });
 
     if (student) {
@@ -35,10 +35,10 @@ const createStudent = asyncHandler(async (req, res) => {
             name: student.name,
             password: student.password,
             dob: student.dob,
-            nicFront :student.nicFront,
-            nicBack :student.nicBack,
-            email :student.email,
-            subjects :student.subjects,
+            nicFront: student.nicFront,
+            nicBack: student.nicBack,
+            email: student.email,
+            subjects: student.subjects,
             role: student.role,
             phoneNumber: student.phoneNumber,
             address: student.address,
@@ -72,10 +72,10 @@ const getStudentProfile = asyncHandler(async (req, res) => {
             role: student.role,
             phoneNumber: student.phoneNumber,
             dob: student.dob,
-            nicFront :student.nicFront,
-            nicBack :student.nicBack,
-            email :student.email,
-            subjects :student.subjects,
+            nicFront: student.nicFront,
+            nicBack: student.nicBack,
+            email: student.email,
+            subjects: student.subjects,
             address: student.address,
             profilePic: student.profilePic,
             gender: student.gender,
@@ -124,11 +124,11 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
             age: updatedUser.age,
             role: updatedUser.role,
             phoneNumber: updatedUser.phoneNumber,
-            dob: student.dob,
-            nicFront :student.nicFront,
-            nicBack :student.nicBack,
-            email :student.email,
-            subjects :student.subjects,
+            dob: updatedUser.dob,
+            nicFront: updatedUser.nicFront,
+            nicBack: updatedUser.nicBack,
+            email: updatedUser.email,
+            subjects: updatedUser.subjects,
             address: updatedUser.address,
             profilePic: updatedUser.profilePic,
             subject: updatedUser.subject,
