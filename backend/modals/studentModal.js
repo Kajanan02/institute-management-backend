@@ -54,6 +54,10 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: false,
     },
+    parentId: {
+        type: String,
+        required: false,
+    },
     instituteId: {
         type: String,
         required: false,

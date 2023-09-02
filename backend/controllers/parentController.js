@@ -1,12 +1,12 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateToken.js";
 import Parent from "../modals/parentModal.js";
+import Student from "../modals/studentModal.js";
 
 //@desc Register a new parent
 //route POST/api/parent/register
 //@access Public
 const createParent = asyncHandler(async (req, res) => {
-    console.log(req.body);
     const {
         name,
         studentId,
@@ -21,7 +21,7 @@ const createParent = asyncHandler(async (req, res) => {
     } = req.body;
     const instituteId = req.params.instituteId;
     const parentExists = await Parent.findOne({studentId})
-    console.log(parentExists)
+    const student = await Student.findOne({_id:studentId})
     if (parentExists) {
         res.status(400);
         throw new Error('Parent already exits')
@@ -41,9 +41,14 @@ const createParent = asyncHandler(async (req, res) => {
         location
     });
 
-    console.log(parent)
+    let updatedStudent
+    if(student && parent){
+        student.parentId = parent._id
+       await student.save();
+    }
 
-    if (parent) {
+
+    if (parent && updatedStudent) {
         generateToken(res, parent._id)
         res.status(201).json(parent)
     } else {
