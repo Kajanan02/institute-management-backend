@@ -32,8 +32,8 @@ const createStudent = asyncHandler(async (req, res) => {
     if (student) {
         generateToken(res, student._id)
         res.status(201).json({
+            _id: student._id,
             name: student.name,
-            password: student.password,
             dob: student.dob,
             nicFront: student.nicFront,
             nicBack: student.nicBack,
