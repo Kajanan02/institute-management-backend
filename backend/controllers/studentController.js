@@ -163,7 +163,7 @@ const deleteStudent = asyncHandler(async (req, res) => {
 const getAllStudents = asyncHandler(async (req, res) => {
 
     try {
-        const students = await Student.find({});
+        const students = await Student.find({}).sort({ createdAt: -1 });;
         res.json(students);
     } catch (err) {
         console.error('Failed to fetch users from MongoDB:', err);
