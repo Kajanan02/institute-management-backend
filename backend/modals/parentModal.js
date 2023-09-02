@@ -15,6 +15,11 @@ const parentSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
+    role: {
+        type: String,
+        default:"4",
+        required: false,
+    },
     password: {
         type: String,
         required: false,
