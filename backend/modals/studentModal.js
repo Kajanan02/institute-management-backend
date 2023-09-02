@@ -16,7 +16,7 @@ const studentSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: true,
+        default:"3",
     },
     phoneNumber: {
         type: String,
