@@ -69,6 +69,10 @@ const studentSchema = mongoose.Schema({
     location: {
         type: Object,
         required: false,
+    },
+    lastAttended:{
+        type: Date,
+        required: false,
     }
 }, {
     timestamps: true,
