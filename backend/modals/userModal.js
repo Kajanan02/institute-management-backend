@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: true,
+       default:"2",
     },
     subject: {
         type: [String],
