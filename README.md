@@ -206,11 +206,11 @@ Sample Request Body
 Sample Request Body (Update only send updated fields)
 
 ```
-{
-    "subject": "Maths",
+{   "subject": "Maths",
     "studentId": "64aaf99d5220f71ec9650b47",
     "marks":"92",
-    "date": "2023-07-15"
+    "date": "2023-07-15",
+    nicNo:""
 }
 ```
 
@@ -222,7 +222,7 @@ Sample Request Body (Update only send updated fields)
 
 ### `http://localhost:5000/api/institute/:instituteId/getAllMarks`
 
-#### Delete Student
+#### Delete Marks
 
 ### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
 
