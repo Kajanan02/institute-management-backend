@@ -4,7 +4,7 @@ import Student from "../modals/studentModal.js";
 
 
 const createMarks = asyncHandler(async (req, res) => {
-    const {subject, marks, studentId, date} = req.body;
+    const {subject, marks, studentId, date,nicNo,name} = req.body;
 
     console.log(req.body)
     const student = await Student.findById(studentId);
@@ -13,8 +13,8 @@ const createMarks = asyncHandler(async (req, res) => {
             subject,
             marks,
             date,
-            studentId,
-            name: student.name
+            studentId,nicNo,
+           name
         });
         // console.log(student)
 
