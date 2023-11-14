@@ -9,6 +9,7 @@ const parentSchema = mongoose.Schema({
     },
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:"Student",
         required: true,
     },
     instituteId: {
