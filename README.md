@@ -298,3 +298,33 @@ Sample Request Body (Update only send updated fields)
     "end":"2021-07-15",
 }
 ```
+
+### Appointment APIs
+
+##### Add Appointment
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/appointment`
+
+```
+{
+    "topic": "No class",
+    "date": "No class",
+    "time":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### getAllAppointments
+
+### `http://localhost:5000/api/institute/:instituteId/getAllAppointments`
+
+##### updateAppointment
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/appointment/:id`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "topic": "No class",
+    "date": "No class",
+    "time":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
