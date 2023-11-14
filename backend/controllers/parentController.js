@@ -44,7 +44,7 @@ const createParent = asyncHandler(async (req, res) => {
     let updatedStudent
     if(student && parent){
         student.parentId = parent._id
-       await student.save();
+        updatedStudent = student.save();
     }
 
 
