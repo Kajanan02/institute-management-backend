@@ -62,30 +62,9 @@ const createStudent = asyncHandler(async (req, res) => {
 //@access Private
 const getStudentProfile = asyncHandler(async (req, res) => {
     let _id = req.params.id
-    const student = await Student.findById(_id)
+    const student = await Student.findById(_id).select('-password').populate("parentId")
     if (student) {
-        res.json({
-            _id: student._id,
-            name: student.name,
-            age: student.age,
-            password: student.password,
-            role: student.role,
-            phoneNumber: student.phoneNumber,
-            dob: student.dob,
-            nicFront: student.nicFront,
-            nicBack: student.nicBack,
-            email: student.email,
-            subjects: student.subjects,
-            address: student.address,
-            profilePic: student.profilePic,
-            gender: student.gender,
-            subject: student.subject,
-            nicNo: student.nicNo,
-            parentName: student.parentName,
-            instituteId: student.instituteId,
-            location: student.location,
-            creationDate: student.creationDate,
-        })
+        res.json(student)
     }
 });
 
