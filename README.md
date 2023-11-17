@@ -243,6 +243,10 @@ Sample Request Body (Update only send updated fields)
 }
 ```
 
+##### Edit Fees status
+
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/fees/:feesId/:status`
+
 ##### getAllFees
 
 ### `http://localhost:5000/api/institute/:instituteId/fees`

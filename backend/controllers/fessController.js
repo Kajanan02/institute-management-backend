@@ -3,11 +3,10 @@ import Student from "../modals/studentModal.js";
 import Fees from "../modals/feesModal.js";
 
 const createFees = asyncHandler(async (req, res) => {
-    const {feesAmount, date, status, method} = req.body;
+    const {feesAmount, date, status, method,paySlip} = req.body;
     const studentId = req.params.studentId;
     const instituteId = req.params.instituteId;
 
-    console.log(req.body)
     const student = await Student.findById(studentId);
     if (student) {
         const fees = await Fees.create({
@@ -17,22 +16,14 @@ const createFees = asyncHandler(async (req, res) => {
             date,
             studentId: studentId,
             name: student.name,
+            studentNIC: student.nicNo,
             instituteId: instituteId
         });
         console.log(fees)
 
         if (fees) {
             // console.log(mark)
-            res.status(201).json({
-                _id: fees._id,
-                name: fees.name,
-                method: fees.method,
-                feesAmount: fees.feesAmount,
-                date: fees.date,
-                instituteId: instituteId,
-                status: fees.status,
-                studentId: fees.studentId,
-            })
+            res.status(201).json(fees)
         } else {
             res.status(400);
             throw new Error('Invalid user Data')
@@ -45,6 +36,18 @@ const createFees = asyncHandler(async (req, res) => {
 
 
 const editFees = asyncHandler(async (req, res) => {
+    let _id = req.params.feesId
+    let status = req.params.status
+    const fees = await Fees.findById(_id);
+
+    if(fees){
+        fees.status = status
+        const updatedFees = await fees.save()
+        res.json(updatedFees)
+    } else {
+        res.status(404);
+        throw new Error('Fees not found');
+    }
 
 })
 
@@ -60,4 +63,4 @@ const getFeesAll = asyncHandler(async (req, res) => {
     }
 )
 
-export {createFees, getFeesAll};
+export {createFees, getFeesAll,editFees};
