@@ -44,7 +44,7 @@ const createParent = asyncHandler(async (req, res) => {
     let updatedStudent
     if(student && parent){
         student.parentId = parent._id
-       await student.save();
+        updatedStudent = student.save();
     }
 
 
@@ -63,7 +63,7 @@ const createParent = asyncHandler(async (req, res) => {
 
 const getParentProfile = asyncHandler(async (req, res) => {
     let _id = req.params.id
-    const parent = await Parent.findById(_id)
+    const parent = await Parent.findById(_id).select('-password').populate('studentId')
     if (parent) {
         res.json(parent)
     } else {
@@ -110,7 +110,7 @@ const updateParentProfile = asyncHandler(async (req, res) => {
 const deleteParent = asyncHandler(async (req, res) => {
 
     let _id = req.params.id
-    const parent = await Parent.findById(_id)
+    const parent = await Parent.findById(_id).select('-password')
     if (parent) {
         await parent.deleteOne();
         res.json({message: 'Parent removed'})

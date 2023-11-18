@@ -54,8 +54,9 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: false,
     },
-    parentId: {
-        type: String,
+    parentId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Parent",
         required: false,
     },
     instituteId: {
@@ -68,6 +69,10 @@ const studentSchema = mongoose.Schema({
     },
     location: {
         type: Object,
+        required: false,
+    },
+    lastAttended:{
+        type: Date,
         required: false,
     }
 }, {

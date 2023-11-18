@@ -14,6 +14,10 @@ const marksSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    nicNo: {
+        type: String,
+        required: true
+    },
     studentId: {
         type: String,
         required: true
