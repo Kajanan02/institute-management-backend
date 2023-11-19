@@ -368,3 +368,40 @@ Sample Request Body (Update only send updated fields)
 
 ### getAllInstituteStudents
 ### `http://localhost:5000/api/institute/students`
+
+
+### LeaderBoards APIs
+
+##### Add LeaderBoard
+### `http://localhost:5000/api/leaderBoard`
+
+```
+{
+    "regNo": "No class",
+    "name": "No class",
+    "instituteName":"2021-07-15",
+    "subject": "2021-07-15"
+    "marks": "2021-07-15"
+}
+```
+
+##### getAllLeaderBoards
+
+### `http://localhost:5000/api/getAllLeaderBoards`
+
+##### updateLeaderBoard
+### `http://localhost:5000/api/leaderBoard/:id`
+
+Sample Request Body (Update only send updated fields)
+```
+{
+    "regNo": "No class",
+    "name": "No class",
+    "instituteName":"2021-07-15",
+    "subject": "2021-07-15"
+    "marks": "2021-07-15"
+}
+```
+
+##### deleteLeaderBoard
+### `http://localhost:5000/api/leaderBoard/:id`
