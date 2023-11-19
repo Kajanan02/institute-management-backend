@@ -15,6 +15,7 @@ import attendanceRoutes from "./routes/attendanceRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import careerRoutes from "./routes/careerRoutes.js";
+import leaderBoardRoutes from "./routes/leaderBoardRoutes.js";
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use('/api/institute', calenderRoutes);
 app.use('/api/institute', appointmentRoutes);
 app.use('/api', paymentRoutes);
 app.use('/api', careerRoutes);
+app.use('/api', leaderBoardRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
