@@ -328,3 +328,39 @@ Sample Request Body (Update only send updated fields)
     "description":"2021-07-15",
 }
 ```
+### Career APIs
+
+##### Add Career
+### `http://localhost:5000/api/career`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "course": "No class",
+    "degreeProgramme": "No class",
+    "availableUniversities": "No class",
+    "medium": "No class",
+    "duration":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### getAllCareers
+### `http://localhost:5000/api/getAllCareers`
+
+##### updateCareer
+### `http://localhost:5000/api/career/:id`
+
+Sample Request Body (Update only send updated fields)
+```
+{
+    "course": "No class",
+    "degreeProgramme": "No class",
+    "availableUniversities": "No class",
+    "medium": "No class",
+    "duration":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### deleteCareer
+### `http://localhost:5000/api/career/:id`
