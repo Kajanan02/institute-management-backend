@@ -364,3 +364,7 @@ Sample Request Body (Update only send updated fields)
 
 ##### deleteCareer
 ### `http://localhost:5000/api/career/:id`
+
+
+### getAllInstituteStudents
+### `http://localhost:5000/api/institute/students`

@@ -60,7 +60,8 @@ const studentSchema = mongoose.Schema({
         required: false,
     },
     instituteId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required: false,
     },
     nicNo: {
