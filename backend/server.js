@@ -13,6 +13,8 @@ import cors from 'cors';
 import parentRoutes from "./routes/parentRoutes.js";
 import attendanceRoutes from "./routes/attendanceRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
+import careerRoutes from "./routes/careerRoutes.js";
 
 dotenv.config();
 
@@ -36,7 +38,8 @@ app.use('/api/institute', feesRoutes);
 app.use('/api/institute', broadcastRoutes);
 app.use('/api/institute', calenderRoutes);
 app.use('/api/institute', appointmentRoutes);
-
+app.use('/api', paymentRoutes);
+app.use('/api', careerRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
