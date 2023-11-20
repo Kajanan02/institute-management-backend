@@ -140,15 +140,14 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
 
 const getAllStudents = asyncHandler(async (req, res) => {
-    let _id = req.params.instituteId
-    const student = await Student.findById({instituteId: _id})
-    try {
-        const students = await Student.find({}).sort({ createdAt: -1 }).select('-password')
-        res.json(students);
-    } catch (err) {
-        console.error('Failed to fetch users from MongoDB:', err);
-        res.status(500).send('Failed to fetch users from MongoDB');
-    }
+
+        try {
+            const students = await Student.find({instituteId: req.params.instituteId}).sort({ createdAt: -1 }).select('-password').populate("instituteId", "name")
+            res.json(students);
+        } catch (err) {
+            console.error('Failed to fetch users from MongoDB:', err);
+            res.status(500).send('Failed to fetch users from MongoDB');
+        }
 });
 
 const getAllInstituteStudents = asyncHandler(async (req, res) => {
