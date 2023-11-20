@@ -38,6 +38,8 @@ const feesSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
+},{
+    timestamps: true,
 });
 
 const Fees = mongoose.model('fees', feesSchema);
