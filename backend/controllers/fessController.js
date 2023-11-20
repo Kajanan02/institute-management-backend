@@ -3,36 +3,17 @@ import Student from "../modals/studentModal.js";
 import Fees from "../modals/feesModal.js";
 
 const createFees = asyncHandler(async (req, res) => {
-    const {feesAmount, date, status, method} = req.body;
+    const {feesAmount, name, status, paymentSlip, method, studentNicNo,month} = req.body;
     const studentId = req.params.studentId;
     const instituteId = req.params.instituteId;
 
     console.log(req.body)
     const student = await Student.findById(studentId);
     if (student) {
-        const fees = await Fees.create({
-            method,
-            status,
-            feesAmount,
-            date,
-            studentId: studentId,
-            name: student.name,
-            instituteId: instituteId
-        });
-        console.log(fees)
-
+        const fees = await Fees.create({feesAmount, name, status, paymentSlip, method, studentNicNo, studentId, instituteId,month});
         if (fees) {
             // console.log(mark)
-            res.status(201).json({
-                _id: fees._id,
-                name: fees.name,
-                method: fees.method,
-                feesAmount: fees.feesAmount,
-                date: fees.date,
-                instituteId: instituteId,
-                status: fees.status,
-                studentId: fees.studentId,
-            })
+            res.status(201).json(fees)
         } else {
             res.status(400);
             throw new Error('Invalid user Data')
@@ -44,9 +25,6 @@ const createFees = asyncHandler(async (req, res) => {
 })
 
 
-const editFees = asyncHandler(async (req, res) => {
-
-})
 
 
 const getFeesAll = asyncHandler(async (req, res) => {
@@ -60,4 +38,24 @@ const getFeesAll = asyncHandler(async (req, res) => {
     }
 )
 
-export {createFees, getFeesAll};
+
+const editFees = asyncHandler(async (req, res) => {
+    let _id = req.params.id
+    const fees = await Fees.findById(_id);
+    if (fees) {
+        fees.feesAmount = req.body.feesAmount || fees.feesAmount;
+        fees.name = req.body.name || fees.name;
+        fees.status = req.body.status || fees.status;
+        fees.paymentSlip = req.body.paymentSlip || fees.paymentSlip;
+        fees.method = req.body.method || fees.method;
+        fees.studentNicNo = req.body.studentNicNo || fees.studentNicNo;
+        fees.month = req.body.month || fees.month;
+        const updatedFees = await fees.save();
+        res.json(updatedFees);
+    } else {
+        res.status(404);
+        throw new Error('Fees not found')
+    }
+})
+
+export {createFees, getFeesAll,editFees};
