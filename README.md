@@ -206,11 +206,11 @@ Sample Request Body
 Sample Request Body (Update only send updated fields)
 
 ```
-{
-    "subject": "Maths",
+{   "subject": "Maths",
     "studentId": "64aaf99d5220f71ec9650b47",
     "marks":"92",
-    "date": "2023-07-15"
+    "date": "2023-07-15",
+    nicNo:""
 }
 ```
 
@@ -222,7 +222,7 @@ Sample Request Body (Update only send updated fields)
 
 ### `http://localhost:5000/api/institute/:instituteId/getAllMarks`
 
-#### Delete Student
+#### Delete Marks
 
 ### `http://localhost:5000/api/institute/:instituteId/marks/:marksId/deleteMarks`
 
@@ -298,3 +298,110 @@ Sample Request Body (Update only send updated fields)
     "end":"2021-07-15",
 }
 ```
+
+### Appointment APIs
+
+##### Add Appointment
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/appointment`
+
+```
+{
+    "topic": "No class",
+    "date": "No class",
+    "time":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### getAllAppointments
+
+### `http://localhost:5000/api/institute/:instituteId/getAllAppointments`
+
+##### updateAppointment
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/appointment/:id`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "topic": "No class",
+    "date": "No class",
+    "time":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+### Career APIs
+
+##### Add Career
+### `http://localhost:5000/api/career`
+Sample Request Body (Update only send updated fields)
+```
+{
+    "course": "No class",
+    "degreeProgramme": "No class",
+    "availableUniversities": "No class",
+    "medium": "No class",
+    "duration":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### getAllCareers
+### `http://localhost:5000/api/getAllCareers`
+
+##### updateCareer
+### `http://localhost:5000/api/career/:id`
+
+Sample Request Body (Update only send updated fields)
+```
+{
+    "course": "No class",
+    "degreeProgramme": "No class",
+    "availableUniversities": "No class",
+    "medium": "No class",
+    "duration":"2021-07-15",
+    "description":"2021-07-15",
+}
+```
+
+##### deleteCareer
+### `http://localhost:5000/api/career/:id`
+
+
+### getAllInstituteStudents
+### `http://localhost:5000/api/institute/students`
+
+
+### LeaderBoards APIs
+
+##### Add LeaderBoard
+### `http://localhost:5000/api/leaderBoard`
+
+```
+{
+    "regNo": "No class",
+    "name": "No class",
+    "instituteName":"2021-07-15",
+    "subject": "2021-07-15"
+    "marks": "2021-07-15"
+}
+```
+
+##### getAllLeaderBoards
+
+### `http://localhost:5000/api/getAllLeaderBoards`
+
+##### updateLeaderBoard
+### `http://localhost:5000/api/leaderBoard/:id`
+
+Sample Request Body (Update only send updated fields)
+```
+{
+    "regNo": "No class",
+    "name": "No class",
+    "instituteName":"2021-07-15",
+    "subject": "2021-07-15"
+    "marks": "2021-07-15"
+}
+```
+
+##### deleteLeaderBoard
+### `http://localhost:5000/api/leaderBoard/:id`

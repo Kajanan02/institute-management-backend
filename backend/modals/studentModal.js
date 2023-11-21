@@ -16,7 +16,7 @@ const studentSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        required: true,
+        default:"3",
     },
     phoneNumber: {
         type: String,
@@ -54,8 +54,14 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: false,
     },
+    parentId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Parent",
+        required: false,
+    },
     instituteId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required: false,
     },
     nicNo: {
@@ -64,6 +70,10 @@ const studentSchema = mongoose.Schema({
     },
     location: {
         type: Object,
+        required: false,
+    },
+    lastAttended:{
+        type: Date,
         required: false,
     }
 }, {

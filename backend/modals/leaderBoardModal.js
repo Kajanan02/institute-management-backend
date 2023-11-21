@@ -1,7 +1,19 @@
 import mongoose from "mongoose";
 
 
-const marksSchema = new mongoose.Schema({
+const leaderBoardSchema = new mongoose.Schema({
+    regNo: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    instituteName: {
+        type: String,
+        required: true
+    },
     subject: {
         type: String,
         required: true
@@ -10,26 +22,10 @@ const marksSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    },
-    nicNo: {
-        type: String,
-        required: true
-    },
-    studentId: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    }
-},{
+}, {
     timestamps: true,
 });
 
-const Marks = mongoose.model('marks', marksSchema);
+const LeaderBoard = mongoose.model('LeaderBoard', leaderBoardSchema);
 
-export default Marks;
+export default LeaderBoard;

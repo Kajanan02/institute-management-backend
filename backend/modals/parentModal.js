@@ -9,11 +9,17 @@ const parentSchema = mongoose.Schema({
     },
     studentId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:"Student",
         required: true,
     },
     instituteId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+    },
+    role: {
+        type: String,
+        default:"4",
+        required: false,
     },
     password: {
         type: String,

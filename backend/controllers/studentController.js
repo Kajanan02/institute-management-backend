@@ -13,9 +13,9 @@ const createStudent = asyncHandler(async (req, res) => {
         name, dob, password, nicFront,
         nicBack,
         email,
-        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
+        subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, location
     } = req.body;
-
+    const instituteId = req.params.instituteId;
     const studentExists = await Student.findOne({nicNo})
     if (studentExists) {
         res.status(400);
@@ -32,8 +32,8 @@ const createStudent = asyncHandler(async (req, res) => {
     if (student) {
         generateToken(res, student._id)
         res.status(201).json({
+            _id: student._id,
             name: student.name,
-            password: student.password,
             dob: student.dob,
             nicFront: student.nicFront,
             nicBack: student.nicBack,
@@ -62,30 +62,9 @@ const createStudent = asyncHandler(async (req, res) => {
 //@access Private
 const getStudentProfile = asyncHandler(async (req, res) => {
     let _id = req.params.id
-    const student = await Student.findById(_id)
+    const student = await Student.findById(_id).select('-password').populate("parentId")
     if (student) {
-        res.json({
-            _id: student._id,
-            name: student.name,
-            age: student.age,
-            password: student.password,
-            role: student.role,
-            phoneNumber: student.phoneNumber,
-            dob: student.dob,
-            nicFront: student.nicFront,
-            nicBack: student.nicBack,
-            email: student.email,
-            subjects: student.subjects,
-            address: student.address,
-            profilePic: student.profilePic,
-            gender: student.gender,
-            subject: student.subject,
-            nicNo: student.nicNo,
-            parentName: student.parentName,
-            instituteId: student.instituteId,
-            location: student.location,
-            creationDate: student.creationDate,
-        })
+        res.json(student)
     }
 });
 
@@ -162,8 +141,19 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
 const getAllStudents = asyncHandler(async (req, res) => {
 
+        try {
+            const students = await Student.find({instituteId: req.params.instituteId}).sort({ createdAt: -1 }).select('-password').populate("instituteId", "name")
+            res.json(students);
+        } catch (err) {
+            console.error('Failed to fetch users from MongoDB:', err);
+            res.status(500).send('Failed to fetch users from MongoDB');
+        }
+});
+
+const getAllInstituteStudents = asyncHandler(async (req, res) => {
+
     try {
-        const students = await Student.find({});
+        const students = await Student.find({}).sort({ createdAt: -1 }).select('-password').populate("instituteId", "name")
         res.json(students);
     } catch (err) {
         console.error('Failed to fetch users from MongoDB:', err);
@@ -171,4 +161,4 @@ const getAllStudents = asyncHandler(async (req, res) => {
     }
 });
 
-export {createStudent, getStudentProfile, updateStudentProfile, deleteStudent, getAllStudents};
+export {createStudent, getStudentProfile, updateStudentProfile, deleteStudent, getAllStudents,getAllInstituteStudents};
