@@ -3,11 +3,11 @@ import Appointment from "../modals/appointmentModal.js";
 import Student from "../modals/studentModal.js";
 
 const createAppointment = asyncHandler(async (req, res) => {
-    const {topic, date, time, description,  status} = req.body;
+    const {topic, date, time, description,  status,parentName} = req.body;
     const instituteId = req.params.instituteId
     const studentId = req.params.studentId
     const appointment = await Appointment.create({
-        instituteId, topic, date, time, description, studentId, status
+        instituteId, topic, date, time, description, studentId, status,parentName
     })
 
     if(appointment) {

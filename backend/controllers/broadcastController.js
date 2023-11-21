@@ -9,15 +9,7 @@ const createBroadcast = asyncHandler(async (req, res) => {
         instituteId, message, messageTopic, sender
     })
     if (broadcast) {
-        // sendPushNotification("Usfwer", "messageTopic")
-        res.status(201).json({
-            _id: broadcast._id,
-            instituteId: broadcast.instituteId,
-            message: broadcast.message,
-            messageTopic: broadcast.messageTopic,
-            sender: broadcast.sender,
-            createdAt: broadcast.createdAt,
-        })
+        res.status(201).json(broadcast)
     } else {
         res.status(400);
         throw new Error("Invalid user Data")
