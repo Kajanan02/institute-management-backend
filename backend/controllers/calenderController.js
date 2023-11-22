@@ -2,16 +2,11 @@ import asyncHandler from "express-async-handler";
 import Calender from "../modals/calenderModal.js";
 
 const createCalenderEvent = asyncHandler(async (req, res) => {
-    const {title, start, end} = req.body;
+    const {title, start, end,color} = req.body;
 
-    const calender = await Calender.create({title, start, end})
+    const calender = await Calender.create({title, start, end,color})
     if (calender) {
-        res.status(201).json({
-            _id: calender._id,
-            title: calender.title,
-            start: calender.start,
-            end: calender.end,
-        })
+        res.status(201).json(calender)
     } else {
         res.status(400);
         throw new Error("Invalid user Data")
@@ -35,6 +30,7 @@ const editCalenderEvent = asyncHandler(async (req, res) => {
         calender.title = req.body.title || calender.title;
         calender.start = req.body.start || calender.start;
         calender.end = req.body.end || calender.end;
+        calender.color = req.body.color || calender.color;
         const updatedCalender = await calender.save();
         res.json({
             _id: updatedCalender._id,

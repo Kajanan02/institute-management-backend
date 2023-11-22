@@ -13,6 +13,10 @@ const calenderSchema = new mongoose.Schema({
     end: {
         type: Date,
         required: true
+    },
+    color: {
+        type: Date,
+        required: true
     }
 }, {
     timestamps: true,
