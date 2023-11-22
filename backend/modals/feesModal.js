@@ -24,7 +24,6 @@ const feesSchema = new mongoose.Schema({
     },
     paymentSlip: {
         type: String,
-        required: true,
     },
     method: {
         type: String,
