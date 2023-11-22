@@ -54,6 +54,9 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: false,
     },
+    parentContact: {
+        type: String,
+    },
     parentId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Parent",

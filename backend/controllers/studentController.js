@@ -25,6 +25,7 @@ const createStudent = asyncHandler(async (req, res) => {
     const student = await Student.create({
         name, dob, password, nicFront,
         nicBack,
+        parentContact,
         email,
         subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
     });
@@ -43,6 +44,7 @@ const createStudent = asyncHandler(async (req, res) => {
             phoneNumber: student.phoneNumber,
             address: student.address,
             profilePic: student.profilePic,
+            parentContact: student.parentContact,
             gender: student.gender,
             nicNo: student.nicNo,
             parentName: student.parentName,
@@ -77,6 +79,7 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
         student.age = req.body.age || student.age
         student.dob = req.body.dob || student.dob
         student.nicFront = req.body.nicFront || student.nicFront
+        student.parentContact = req.body.parentContact || student.parentContact
         student.nicBack = req.body.nicBack || student.nicBack
         student.email = req.body.email || student.email
         student.subjects = req.body.subjects || student.subjects
