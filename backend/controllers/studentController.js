@@ -12,6 +12,7 @@ const createStudent = asyncHandler(async (req, res) => {
     const {
         name, dob, password, nicFront,
         nicBack,
+        parentContact,
         email,
         subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, location
     } = req.body;
