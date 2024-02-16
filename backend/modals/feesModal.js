@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const feesSchema = new mongoose.Schema({
     studentId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Student',
         required: true,
     },
     feesAmount: {
@@ -13,16 +14,25 @@ const feesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    studentNIC: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
     status: {
         default:"REQUESTED",
         type: String,
         required: true,
     },
     instituteId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
         required: true,
     },
-    paymentSlip: {
+    paySlip: {
         type: String,
     },
     method: {

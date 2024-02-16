@@ -7,7 +7,6 @@ const createFees = asyncHandler(async (req, res) => {
     const studentId = req.params.studentId;
     const instituteId = req.params.instituteId;
 
-    console.log(req.body)
     const student = await Student.findById(studentId);
     if (student) {
         const fees = await Fees.create({feesAmount, name, status, paymentSlip, method, studentNicNo, studentId, instituteId,month});
