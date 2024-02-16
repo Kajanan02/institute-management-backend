@@ -23,6 +23,7 @@ const feesSchema = new mongoose.Schema({
         required: true,
     },
     status: {
+        default:"REQUESTED",
         type: String,
         required: true,
     },
@@ -37,7 +38,17 @@ const feesSchema = new mongoose.Schema({
     method: {
         type: String,
         required: true,
+    },
+    studentNicNo: {
+        type: String,
+        required: true,
+    },
+    month: {
+        type: String,
+        required: true,
     }
+},{
+    timestamps: true,
 });
 
 const Fees = mongoose.model('fees', feesSchema);

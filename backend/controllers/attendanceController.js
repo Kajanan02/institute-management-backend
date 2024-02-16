@@ -20,4 +20,14 @@ const updateAttendance = asyncHandler(async (req, res) => {
     }
 })
 
-export {updateAttendance}
+const getAllAttendance = asyncHandler(async (req, res) => {
+    const attendance = await Attendance.find({}).sort({ createdAt: -1 });
+    if (attendance) {
+        res.json(attendance);
+    } else {
+        res.status(404);
+        throw new Error('Attendance not found')
+    }
+})
+
+export {updateAttendance,getAllAttendance}

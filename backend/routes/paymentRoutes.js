@@ -4,6 +4,6 @@ import {payHereHash} from "../controllers/paymentController.js";
 
 const router = express.Router();
 
-router.route('/payment-hash').get(payHereHash);
+router.route('/payment-hash').post(payHereHash);
 
 export default router;

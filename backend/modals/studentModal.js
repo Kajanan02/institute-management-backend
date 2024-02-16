@@ -54,13 +54,17 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: false,
     },
+    parentContact: {
+        type: String,
+    },
     parentId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Parent",
         required: false,
     },
     instituteId: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required: false,
     },
     nicNo: {

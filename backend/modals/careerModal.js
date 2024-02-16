@@ -1,35 +1,35 @@
 import mongoose from "mongoose";
 
 
-const marksSchema = new mongoose.Schema({
-    subject: {
+const careerSchema = new mongoose.Schema({
+    course: {
         type: String,
         required: true
     },
-    marks: {
+    degreeProgramme: {
         type: String,
         required: true
     },
-    name: {
+    availableUniversities: {
         type: String,
         required: true
     },
-    nicNo: {
+    medium: {
         type: String,
         required: true
     },
-    studentId: {
+    duration: {
         type: String,
         required: true
     },
-    date: {
-        type: Date,
+    description: {
+        type: String,
         required: true
     }
-},{
+}, {
     timestamps: true,
 });
 
-const Marks = mongoose.model('marks', marksSchema);
+const Career = mongoose.model('career', careerSchema);
 
-export default Marks;
+export default Career;

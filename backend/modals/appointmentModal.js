@@ -31,6 +31,9 @@ const appointmentSchema = new mongoose.Schema({
         ref:"User",
         required: true,
     },
+    parentName: {
+        type: String,
+    },
 }, {
     timestamps: true,
 });

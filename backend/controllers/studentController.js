@@ -12,6 +12,7 @@ const createStudent = asyncHandler(async (req, res) => {
     const {
         name, dob, password, nicFront,
         nicBack,
+        parentContact,
         email,
         subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, location
     } = req.body;
@@ -25,6 +26,7 @@ const createStudent = asyncHandler(async (req, res) => {
     const student = await Student.create({
         name, dob, password, nicFront,
         nicBack,
+        parentContact,
         email,
         subjects, role, phoneNumber, address, profilePic, gender, nicNo, parentName, instituteId, location
     });
@@ -43,6 +45,7 @@ const createStudent = asyncHandler(async (req, res) => {
             phoneNumber: student.phoneNumber,
             address: student.address,
             profilePic: student.profilePic,
+            parentContact: student.parentContact,
             gender: student.gender,
             nicNo: student.nicNo,
             parentName: student.parentName,
@@ -77,6 +80,7 @@ const updateStudentProfile = asyncHandler(async (req, res) => {
         student.age = req.body.age || student.age
         student.dob = req.body.dob || student.dob
         student.nicFront = req.body.nicFront || student.nicFront
+        student.parentContact = req.body.parentContact || student.parentContact
         student.nicBack = req.body.nicBack || student.nicBack
         student.email = req.body.email || student.email
         student.subjects = req.body.subjects || student.subjects
@@ -141,8 +145,19 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
 const getAllStudents = asyncHandler(async (req, res) => {
 
+        try {
+            const students = await Student.find({instituteId: req.params.instituteId}).sort({ createdAt: -1 }).select('-password').populate("instituteId", "name")
+            res.json(students);
+        } catch (err) {
+            console.error('Failed to fetch users from MongoDB:', err);
+            res.status(500).send('Failed to fetch users from MongoDB');
+        }
+});
+
+const getAllInstituteStudents = asyncHandler(async (req, res) => {
+
     try {
-        const students = await Student.find({}).sort({ createdAt: -1 });;
+        const students = await Student.find({}).sort({ createdAt: -1 }).select('-password').populate("instituteId", "name")
         res.json(students);
     } catch (err) {
         console.error('Failed to fetch users from MongoDB:', err);
@@ -150,4 +165,4 @@ const getAllStudents = asyncHandler(async (req, res) => {
     }
 });
 
-export {createStudent, getStudentProfile, updateStudentProfile, deleteStudent, getAllStudents};
+export {createStudent, getStudentProfile, updateStudentProfile, deleteStudent, getAllStudents,getAllInstituteStudents};

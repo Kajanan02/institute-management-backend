@@ -3,24 +3,13 @@ import Student from "../modals/studentModal.js";
 import Fees from "../modals/feesModal.js";
 
 const createFees = asyncHandler(async (req, res) => {
-    const {feesAmount, date, status, method,paySlip} = req.body;
+    const {feesAmount, name, status, paymentSlip, method, studentNicNo,month} = req.body;
     const studentId = req.params.studentId;
     const instituteId = req.params.instituteId;
 
     const student = await Student.findById(studentId);
     if (student) {
-        const fees = await Fees.create({
-            method,
-            status,
-            feesAmount,
-            date,
-            studentId: studentId,
-            name: student.name,
-            studentNIC: student.nicNo,
-            instituteId: instituteId
-        });
-        console.log(fees)
-
+        const fees = await Fees.create({feesAmount, name, status, paymentSlip, method, studentNicNo, studentId, instituteId,month});
         if (fees) {
             // console.log(mark)
             res.status(201).json(fees)
@@ -35,21 +24,6 @@ const createFees = asyncHandler(async (req, res) => {
 })
 
 
-const editFees = asyncHandler(async (req, res) => {
-    let _id = req.params.feesId
-    let status = req.params.status
-    const fees = await Fees.findById(_id);
-
-    if(fees){
-        fees.status = status
-        const updatedFees = await fees.save()
-        res.json(updatedFees)
-    } else {
-        res.status(404);
-        throw new Error('Fees not found');
-    }
-
-})
 
 
 const getFeesAll = asyncHandler(async (req, res) => {
@@ -62,5 +36,25 @@ const getFeesAll = asyncHandler(async (req, res) => {
         }
     }
 )
+
+
+const editFees = asyncHandler(async (req, res) => {
+    let _id = req.params.id
+    const fees = await Fees.findById(_id);
+    if (fees) {
+        fees.feesAmount = req.body.feesAmount || fees.feesAmount;
+        fees.name = req.body.name || fees.name;
+        fees.status = req.body.status || fees.status;
+        fees.paymentSlip = req.body.paymentSlip || fees.paymentSlip;
+        fees.method = req.body.method || fees.method;
+        fees.studentNicNo = req.body.studentNicNo || fees.studentNicNo;
+        fees.month = req.body.month || fees.month;
+        const updatedFees = await fees.save();
+        res.json(updatedFees);
+    } else {
+        res.status(404);
+        throw new Error('Fees not found')
+    }
+})
 
 export {createFees, getFeesAll,editFees};
