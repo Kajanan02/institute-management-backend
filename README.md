@@ -1,5 +1,11 @@
 # This project representing the institute management system BackEnd
 
+
+### Project Name: Institute Management System
+
+#### Project Demo Link: [Institute Management System](https://www.youtube.com/watch?v=qBvAAoWg6wE)
+#### FrontEnd Repository: [Institute Management System FrontEnd](https://github.com/Kajanan02/Institute-web)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -240,8 +246,13 @@ Sample Request Body (Update only send updated fields)
     "status": "64aaf99d5220f71ec9650b47",
     "feesAmount":"92",
     "date": "2023-07-15"
+    paySlip:""
 }
 ```
+
+##### Edit Fees status
+
+### `http://localhost:5000/api/institute/:instituteId/student/:studentId/fees/:feesId/:status`
 
 ##### getAllFees
 
