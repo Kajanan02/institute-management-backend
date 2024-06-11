@@ -1,0 +1,28 @@
+name: Deploy Node Application
+on:
+  push:
+    branches:
+      - erp-dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker Image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/institute-management-backend .
+      - name: Publish Docker Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/institute-management-backend:latest
+
+  publish:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull Docker Image
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/institute-management-backend:latest
+      - name: Run Docker Container
+        run: docker run -d -p 5000:5000 --name institute-management-backend -e MONGO_URI=${{ secrets.MONGO_URI }} ${{ secrets.DOCKER_USERNAME }}/institute-management-backend
+
