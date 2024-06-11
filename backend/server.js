@@ -21,7 +21,7 @@ import leaderBoardRoutes from "./routes/leaderBoardRoutes.js";
 dotenv.config();
 
 connectDB();
-const port = process.env.PORT || 5000;
+const port =  5000;
 const app = express();
 // Enable CORS for all routes
 app.use(cors());
